@@ -1,0 +1,10 @@
+SLAVE:
+INPUT: _4453vch.inm
+MODNAME: apmain
+RUNID: _4453vch
+NEW_RUNID: _4453vch
+OLD_RUNID: _4453vch
+PDF: _4453vch.appdf
+USERNAME: anabera
+XMOD: C:\Program Files\AspenTech\Aspen Plus V12.1\Engine\xeq\apmain
+DBCONN: _4453vch.ads

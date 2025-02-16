@@ -1,0 +1,593 @@
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION HISTORY                     + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WIN-X64                                       FEBRUARY 12, 2025   
+ VERSION: 39.0   Build 116                               WEDNESDAY   
+ INSTALLATION:                                           1:54:57 P.M.        
+
+ THIS COPY OF ASPEN PLUS LICENSED TO ETH ZURICH                      
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+ *** INPUT SUMMARY ***
+
+ >>CURRENT RUN
+
+   ORIGINAL RUN                           FEBRUARY 12, 2025   
+   1:54:57 P.M.                           WEDNESDAY   
+   INPUT FILE: _2736xyr.inm
+   RUN ID : _2736xyr
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 39.0 at 13:54:56 Wed Feb 12, 2025
+          3    ;Directory   Runid HYDROGEN_PEROXIDE_AO_IDEAL_SIMULATION
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         11            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         12
+         13    DEF-STREAMS CONVEN ALL
+         14
+         15    MODEL-OPTION
+         16
+         17    DATABANKS 'APV121 PURE39' / 'APV121 AQUEOUS' / 'APV121 SOLIDS' &
+         18             / 'APV121 INORGANIC' / 'APESV121 AP-EOS' /  &
+         19            'NISTV121 NIST-TRC' / NOASPENPCD
+         20
+         21    PROP-SOURCES 'APV121 PURE39' / 'APV121 AQUEOUS' /  &
+         22            'APV121 SOLIDS' / 'APV121 INORGANIC' / 'APESV121 AP-EOS' &
+         23             / 'NISTV121 NIST-TRC'
+         24
+         25    COMPONENTS
+         26        HYDRO-01 H2 /
+         27        OXYGE-01 O2 /
+         28        WATER H2O /
+         29        HYDRO-02 H2O2 /
+         30        C16H14O2 C16H14O2 /
+         31        C16H12O2 C16H12O2
+         32
+         33    SOLVE
+         34        RUN-MODE MODE=SIM
+         35
+         36    FLOWSHEET
+         37        BLOCK B1 IN=HYDROGEN OUT=S3
+         38        BLOCK B2 IN=AO OUT=S4
+         39        BLOCK B4 IN=S3 S4 OUT=S5
+         40        BLOCK B5 IN=S5 OUT=S6
+         41        BLOCK B3 IN=S6 OUT=S7
+         42        BLOCK B6 IN=S12 S19 OUT=S13
+         43        BLOCK B7 IN=OXYGEN OUT=S9
+         44        BLOCK B8 IN=S9 OUT=S10
+         45        BLOCK B9 IN=S11 OUT=S12
+         46        BLOCK B10 IN=S10 OUT=S11
+         47        BLOCK B13 IN=S7 OUT=OFFGAS S18
+         48        BLOCK B14 IN=S18 OUT=S19
+         49        BLOCK B15 IN=S13 S20 OUT=H2O2 S22
+         50        BLOCK B16 IN=WATER OUT=S20
+         51        BLOCK B18 IN=WATEROUT OUT=S25
+         52        BLOCK B19 IN=CONCH2O2 OUT=S26
+         53        BLOCK B20 IN=S22 OUT=RECAO MAKEUPAO
+         54        BLOCK B17 IN=H2O2 OUT=CONCH2O2 WATEROUT
+         55
+         56    PROPERTIES PENG-ROB
+         57        PROPERTIES NRTL / UNIQUAC
+         58
+         59    ESTIMATE ALL
+         60
+         61    PROP-DATA PCES-1
+         62        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         63            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         64        PROP-LIST RKTZRA / VLSTD
+         65        PVAL C16H14O2 .2267446660 / 204.6640000
+         66        PVAL C16H12O2 .2069549920 / 192.8710000
+         67
+         68    PROP-DATA SIGDIP-1
+         69        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         70            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         71        PROP-LIST SIGDIP
+         72        PVAL C16H14O2 75.89301330 1.222222220 7.3531509E-10  &
+         73            -8.270152E-10 3.2598681E-10 374.0030000 590.2300000
+         74        PVAL C16H12O2 82.10448390 1.222222220 -1.1699862E-9  &
+         75            1.31579822E-9 -5.143585E-10 383.0460000 574.5500000
+         76
+         77    PROP-DATA NRTL-1
+         78        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         79            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         80        PROP-LIST NRTL
+         81        BPVAL WATER HYDRO-02 .8259000000 -292.3008000 .3000000000  &
+         82            0.0 0.0 0.0 45.00000000 90.00000000
+         83        BPVAL HYDRO-02 WATER -.7826000000 -27.12970000 .3000000000  &
+         84            0.0 0.0 0.0 45.00000000 90.00000000
+         85
+         86    PROP-DATA UNIQ-1
+         87        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         88            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         89        PROP-LIST UNIQ
+         90        BPVAL WATER HYDRO-02 -.3998000000 165.7152000 0.0 0.0  &
+         91            45.00000000 90.00000000 0.0
+         92        BPVAL HYDRO-02 WATER .6085000000 60.62870000 0.0 0.0  &
+         93            45.00000000 90.00000000 0.0
+         94
+         95    STREAM AO
+         96        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=1224.961304
+         97        MOLE-FRAC C16H12O2 1.
+         98
+         99    STREAM HYDROGEN
+        100        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=1224.961304
+        101        MOLE-FRAC HYDRO-01 1.
+        102
+        103    STREAM OXYGEN
+        104        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=900.
+        105        MOLE-FRAC OXYGE-01 1.
+        106
+        107    STREAM WATER
+        108        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=100.
+        109        MASS-FRAC WATER 1.
+        110
+        111    BLOCK B4 MIXER
+        112        PARAM
+        113
+        114    BLOCK B20 FSPLIT
+        115        FRAC RECAO 0.9996
+        116
+        117    BLOCK B15 SEP
+        118        PARAM PRES=1.
+        119        FRAC STREAM=H2O2 SUBSTREAM=MIXED COMPS=HYDRO-01 OXYGE-01  &
+        120            WATER HYDRO-02 C16H14O2 C16H12O2 FRACS=1. 1. 1. 1.  &
+        121            0. 0.
+        122
+        123    BLOCK B5 HEATER
+        124        PARAM TEMP=36. PRES=0. DPPARMOPT=NO
+        125
+        126    BLOCK B8 HEATER
+        127        PARAM TEMP=25. PRES=0. DPPARMOPT=NO
+        128
+        129    BLOCK B9 HEATER
+        130        PARAM TEMP=25. PRES=0. DPPARMOPT=NO
+        131
+        132    BLOCK B18 HEATER
+        133        PARAM TEMP=25. PRES=1. DPPARMOPT=NO
+        134
+        135    BLOCK B19 HEATER
+        136        PARAM TEMP=25. PRES=1. DPPARMOPT=NO
+        137
+        138    BLOCK B13 FLASH2
+        139        PARAM PRES=0. DUTY=0.
+        140
+        141    BLOCK B17 FLASH2
+        142        PARAM TEMP=70. PRES=0.
+        143
+        144    BLOCK B3 RSTOIC
+        145        PARAM TEMP=36. PRES=2.
+        146        STOIC 1 MIXED HYDRO-01 -1. / C16H12O2 -1. / C16H14O2 1.
+        147        CONV 1 MIXED HYDRO-01 0.9
+        148
+        149    BLOCK B6 RSTOIC
+        150        PARAM PRES=10. DUTY=0.
+        151        STOIC 1 MIXED C16H14O2 -1. / OXYGE-01 -1. / HYDRO-02 1. / &
+        152            C16H12O2 1.
+        153        CONV 1 MIXED C16H14O2 1.
+        154
+        155    BLOCK B2 PUMP
+        156        PARAM PRES=2. EFF=0.85
+        157
+        158    BLOCK B14 PUMP
+        159        PARAM PRES=10. EFF=0.85
+        160
+        161    BLOCK B16 PUMP
+        162        PARAM PRES=1. EFF=0.85
+        163
+        164    BLOCK B1 COMPR
+        165        PARAM TYPE=ASME-ISENTROP PRES=2. SEFF=0.85 SB-MAXIT=30  &
+        166            SB-TOL=0.0001
+        167
+        168    BLOCK B7 COMPR
+        169        PARAM TYPE=ASME-ISENTROP PRES=5. SEFF=0.85 SB-MAXIT=30  &
+        170            SB-TOL=0.0001
+        171
+        172    BLOCK B10 COMPR
+        173        PARAM TYPE=ASME-ISENTROP PRES=10. SEFF=0.85 SB-MAXIT=30  &
+        174            SB-TOL=0.0001
+        175
+        176    DESIGN-SPEC DS-1
+        177        DEFINE MASSFRAC MASS-FRAC STREAM=H2O2 SUBSTREAM=MIXED  &
+        178            COMPONENT=HYDRO-02
+        179        SPEC "MASSFRAC" TO "0.5"
+        180        TOL-SPEC "1e-4"
+        181        VARY MOLE-FLOW STREAM=WATER SUBSTREAM=MIXED COMPONENT=WATER  &
+        182            UOM="kmol/hr"
+        183        LIMITS "1" "100000000"
+        184
+        185    DESIGN-SPEC DS-2
+        186        DEFINE HYDROGEN MOLE-FLOW STREAM=S19 SUBSTREAM=MIXED  &
+        187            COMPONENT=C16H14O2 UOM="kmol/hr"
+        188        DEFINE OXYGEN MOLE-FLOW STREAM=OXYGEN SUBSTREAM=MIXED  &
+        189            COMPONENT=OXYGE-01 UOM="kmol/hr"
+        190        SPEC "HYDROGEN-OXYGEN" TO "0"
+        191        TOL-SPEC "1e-3"
+        192        VARY MOLE-FLOW STREAM=OXYGEN SUBSTREAM=MIXED  &
+        193            COMPONENT=OXYGE-01 UOM="kmol/hr"
+        194        LIMITS "1" "100000000"
+        195
+        196    DESIGN-SPEC DS-4
+        197        DEFINE H2O2FLOW MASS-FLOW STREAM=S26 SUBSTREAM=MIXED  &
+        198            COMPONENT=HYDRO-02 UOM="kg/hr"
+        199        SPEC "H2O2FLOW" TO "37500"
+        200        TOL-SPEC "1e-4"
+        201        VARY MOLE-FLOW STREAM=HYDROGEN SUBSTREAM=MIXED  &
+        202            COMPONENT=HYDRO-01 UOM="kmol/hr"
+        203        LIMITS "0" "10000000000"
+        204
+        205    DESIGN-SPEC DS-5
+        206        DEFINE AOFLOW MOLE-FLOW STREAM=AO SUBSTREAM=MIXED  &
+        207            COMPONENT=C16H12O2 UOM="kmol/hr"
+        208        DEFINE H2FLOW MOLE-FLOW STREAM=HYDROGEN SUBSTREAM=MIXED  &
+        209            COMPONENT=HYDRO-01 UOM="kmol/hr"
+        210        SPEC "AOFLOW-H2FLOW" TO "0"
+        211        TOL-SPEC "1E-3"
+        212        VARY MOLE-FLOW STREAM=AO SUBSTREAM=MIXED COMPONENT=C16H12O2  &
+        213            UOM="kmol/hr"
+        214        LIMITS "1" "10000000000"
+        215
+        216    EO-CONV-OPTI
+        217
+        218    STREAM-REPOR MOLEFLOW
+        219
+        220    PROPERTY-REP PCES
+        221
+        222    DISABLE
+        223        DESIGN-SPEC DS-4 DS-5
+        224    ;
+        225    ;
+        226    ;
+        227    ;
+        228    ;
+ *** INPUT TRANSLATOR MESSAGES ***
+
+  *** THIS RUN USES THE PROPERTIES ENTERPRISE DATABASE ***
+      SQLLOCALDB.APESV121 : (DATAVERSION - 39.0.0.5)                          
+      SQLLOCALDB.APV121 : (DATAVERSION - 39.0.0.3)                            
+      SQLLOCALDB.FACTV121 : (DATAVERSION - 39.0.0.3)                          
+      SQLLOCALDB.NISTV121 : (DATAVERSION - 39.0.0.3)                          
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT HYDRO-01 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT OXYGE-01 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT WATER HAS NOT BEEN DEFINED.                       
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT HYDRO-02 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT C16H14O2 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT C16H12O2 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+
+
+ 
+ DESIGN SPEC: DS-1 WILL BE INTERPRETED 
+ DESIGN SPEC: DS-2 WILL BE INTERPRETED 
+ DESIGN SPEC: DS-4 WILL BE INTERPRETED 
+ DESIGN SPEC: DS-5 WILL BE INTERPRETED 
+ 
+
+ PDF updated                                                                      TIME =      0.63
+
+ *** CALCULATION TRACE ***
+
+
+ *** FLOWSHEET ANALYSIS MESSAGES ***
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   HYDROGEN   ----       B1             AO         ----       B2      
+   OXYGEN     ----       B7             WATER      ----       B16     
+   S3         B1         B4             S4         B2         B4      
+   S5         B4         B5             S6         B5         B3      
+   S7         B3         B13            S13        B6         B15     
+   S9         B7         B8             S10        B8         B10     
+   S12        B9         B6             S11        B10        B9      
+   OFFGAS     B13        ----           S18        B13        B14     
+   S19        B14        B6             H2O2       B15        B17     
+   S22        B15        B20            S20        B16        B15     
+   S25        B18        ----           S26        B19        ----    
+   RECAO      B20        ----           MAKEUPAO   B20        ----    
+   CONCH2O2   B17        B19            WATEROUT   B17        B18     
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+
+   BLOCK        INLETS                         OUTLETS
+   B1           HYDROGEN                       S3                          
+   B2           AO                             S4                          
+   B4           S3 S4                          S5                          
+   B5           S5                             S6                          
+   B3           S6                             S7                          
+   B6           S12 S19                        S13                         
+   B7           OXYGEN                         S9                          
+   B8           S9                             S10                         
+   B9           S11                            S12                         
+   B10          S10                            S11                         
+   B13          S7                             OFFGAS S18                  
+   B14          S18                            S19                         
+   B15          S13 S20                        H2O2 S22                    
+   B16          WATER                          S20                         
+   B18          WATEROUT                       S25                         
+   B19          CONCH2O2                       S26                         
+   B20          S22                            RECAO MAKEUPAO              
+   B17          H2O2                           CONCH2O2 WATEROUT           
+
+      BLOCK $OLVER01 (METHOD: SECANT  ) HAS BEEN DEFINED TO CONVERGE
+                SPECS : DS-1
+
+      BLOCK $OLVER02 (METHOD: SECANT  ) HAS BEEN DEFINED TO CONVERGE
+                SPECS : DS-2
+
+      COMPUTATION ORDER FOR THE FLOWSHEET IS:
+      B2 B1 B4 B5 B3 B13 B14 
+      $OLVER02 
+      (RETURN $OLVER02) 
+      B7 B8 B10 B9 B6 
+      $OLVER01 B16 B15 
+      (RETURN $OLVER01) 
+      B17 B18 B19 B20 
+
+Calculations begin                                                              time      0.02
+
+
+ SIMULATION CALCULATIONS BEGIN                                                    TIME =      0.02
+
+      ENTHALPY CALCULATION FOR INLET STREAM AO OF BLOCK B2                        TIME =      0.02
+      KODE = 2  NTRIAL =   1  T = 298.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      UOS BLOCK B2       MODEL: PUMP                                              TIME =      0.02
+      VOL-FLOW   =  0.5153E-01 , DELTA P    =  0.1000E+06 , PUMP EFF   =  0.8500    
+      FLUID PWR  =   5153.     , BRAKE PWR  =   6063.     , ELEC PWR   =   6063.    
+
+      ENTHALPY CALCULATION FOR INLET STREAM HYDROGEN OF BLOCK B1                  TIME =      0.02
+      KODE = 2  NTRIAL =   0  T = 298.1500  P =  100000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: COMPR                                             TIME =      0.02
+      OUTLET TEMP =   375.4       OUTLET PRES =  0.2000E+06   INDICATED HP =  0.7617E+06   BRAKE HP =  0.7617E+06
+      POLYTROPIC EFFICIENCY =  0.8500    
+      ASME FAC =   1.000    
+
+      UOS BLOCK B4       MODEL: MIXER                                             TIME =      0.02
+      KODE = 1  NTRIAL =  10  T = 303.6502  P =  200000.      V = 0.499805      Q =  0.00000    
+
+      UOS BLOCK B5       MODEL: HEATER                                            TIME =      0.02
+      KODE = 2  NTRIAL =   2  T = 309.1500  P =  200000.      V = 0.499799      Q =  766116.    
+
+      UOS BLOCK B3       MODEL: RSTOIC                                            TIME =      0.02
+      KODE = 2  NTRIAL =   2  T = 309.1500  P =  200000.      V = 9.050144E-02  Q =-2.361179E+06
+
+      UOS BLOCK B13      MODEL: FLASH2                                            TIME =      0.02
+      KODE = 1  NTRIAL =  11  T = 309.1500  P =  200000.      V = 9.050144E-02  Q =  0.00000    
+
+      UOS BLOCK B14      MODEL: PUMP                                              TIME =      0.02
+      VOL-FLOW   =  0.5818E-01 , DELTA P    =  0.8000E+06 , PUMP EFF   =  0.8500    
+      FLUID PWR  =  0.4655E+05 , BRAKE PWR  =  0.5476E+05 , ELEC PWR   =  0.5476E+05
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      0.02
+     SPECS: DS-2
+
+      ENTHALPY CALCULATION FOR INLET STREAM OXYGEN OF BLOCK B7                    TIME =      0.02
+      KODE = 2  NTRIAL =   0  T = 298.1500  P =  100000.      V =  1.00000      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      0.02
+      ITER   0 For Specs:        DS-2
+      ---FLASH STREAM OXYGEN  :
+      KODE = 2  NTRIAL =   0  T = 298.1500  P =  100000.      V =  1.00000      Q = 5.057296E-10
+      SPEC   1 ERROR =   202.47     OLD X =  0.25000     NEW X =   278.03    
+
+  LOOP $OLVER02 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL     0.20247E+06    TIME =      0.02
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      0.02
+      ITER   2 For Specs:        DS-2
+      ---FLASH STREAM OXYGEN  :
+      KODE = 2  NTRIAL =   0  T = 298.1500  P =  100000.      V =  1.00000      Q =  0.00000    
+      SPEC   1 ERROR = -0.99980E+06 OLD X =   278.03     NEW X =  0.30624    
+
+  LOOP $OLVER02 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL    -0.99980E+09    TIME =      0.02
+
+      CONVERGENCE BLOCK $OLVER02  METHOD: SECANT                                  TIME =      0.02
+      ITER   3 For Specs:        DS-2
+      ---FLASH STREAM OXYGEN  :
+      KODE = 2  NTRIAL =   0  T = 298.1500  P =  100000.      V =  1.00000      Q =  0.00000    
+      SPEC   1 ERROR =   0.0000                              X =  0.30624    
+
+  LOOP $OLVER02 ITER    3:     *** CONVERGED *** , MAX ERR/TOL      0.0000        TIME =      0.02
+
+      UOS BLOCK B7       MODEL: COMPR                                             TIME =      0.02
+      OUTLET TEMP =   495.4       OUTLET PRES =  0.5000E+06   INDICATED HP =  0.1816E+07   BRAKE HP =  0.1816E+07
+      POLYTROPIC EFFICIENCY =  0.8500    
+      ASME FAC =   1.002    
+
+      UOS BLOCK B8       MODEL: HEATER                                            TIME =      0.02
+      KODE = 2  NTRIAL =   0  T = 298.1500  P =  500000.      V =  1.00000      Q =-1.827006E+06
+
+      UOS BLOCK B10      MODEL: COMPR                                             TIME =      0.02
+      OUTLET TEMP =   373.8       OUTLET PRES =  0.1000E+07   INDICATED HP =  0.6813E+06   BRAKE HP =  0.6813E+06
+      POLYTROPIC EFFICIENCY =  0.8500    
+      ASME FAC =   1.000    
+
+      UOS BLOCK B9       MODEL: HEATER                                            TIME =      0.02
+      KODE = 2  NTRIAL =   0  T = 298.1500  P = 1.000000E+06  V =  1.00000      Q = -695607.    
+
+      UOS BLOCK B6       MODEL: RSTOIC                                            TIME =      0.02
+      KODE = 1  NTRIAL =  10  T = 556.6992  P = 1.000000E+06  V = 0.301552      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.02
+     SPECS: DS-1
+
+      ENTHALPY CALCULATION FOR INLET STREAM WATER OF BLOCK B16                    TIME =      0.02
+      KODE = 2  NTRIAL =   1  T = 298.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      UOS BLOCK B16      MODEL: PUMP                                              TIME =      0.02
+      VOL-FLOW   =  0.5035E-03 , DELTA P    =   0.000     , PUMP EFF   =  0.8500    
+      FLUID PWR  =   0.000     , BRAKE PWR  =   0.000     , ELEC PWR   =   0.000    
+
+      UOS BLOCK B15      MODEL: SEP                                               TIME =      0.02
+      ---FLASH FEED STREAM TO CALCULATE TEMPERATURE:
+      KODE = 1  NTRIAL =   7  T = 531.0568  P =  100000.      V = 0.497638      Q =  0.00000    
+      ---FLASH OUTLET STREAM H2O2    :
+      KODE = 2  NTRIAL =   2  T = 531.0568  P =  100000.      V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM S22     :
+      KODE = 2  NTRIAL =   1  T = 531.0568  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.02
+      ITER   0 For Specs:        DS-1
+      ---FLASH STREAM WATER   :
+      KODE = 2  NTRIAL =   1  T = 298.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+      SPEC   1 ERROR =  0.45413     OLD X =  0.27778E-01 NEW X =   277.81    
+
+  LOOP $OLVER01 ITER    1:   1 VARS NOT CONVERGED, MAX ERR/TOL      4541.3        TIME =      0.02
+
+      UOS BLOCK B16      MODEL: PUMP                                              TIME =      0.02
+      VOL-FLOW   =   5.035     , DELTA P    =   0.000     , PUMP EFF   =  0.8500    
+      FLUID PWR  =   0.000     , BRAKE PWR  =   0.000     , ELEC PWR   =   0.000    
+
+      UOS BLOCK B15      MODEL: SEP                                               TIME =      0.02
+      ---FLASH FEED STREAM TO CALCULATE TEMPERATURE:
+      KODE = 1  NTRIAL =   8  T = 299.1122  P =  100000.      V = 1.240232E-03  Q =  0.00000    
+
+  *   WARNING WHILE EXECUTING UNIT OPERATIONS BLOCK: "B15" (MODEL: "SEP")       
+                                                               (XFLASH.11)      
+      FLASH RESULTS ARE WITHIN TOLERANCE, BUT MAY BE UNSATISFACTORY BECAUSE     
+      EXTRAPOLATED EOS VAPOR VOLUME ROOT WAS USED FOR PROPERTY CALCULATIONS     
+      (T= 299.1122 K, P= 1.0000D+05 Pa).                                        
+      ---FLASH OUTLET STREAM H2O2    :
+      KODE = 2  NTRIAL =   2  T = 299.1122  P =  100000.      V = 4.002026E-07  Q =  0.00000    
+      ---FLASH OUTLET STREAM S22     :
+      KODE = 2  NTRIAL =   1  T = 299.1122  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.02
+      ITER   2 For Specs:        DS-1
+      ---FLASH STREAM WATER   :
+      KODE = 2  NTRIAL =   1  T = 298.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+      SPEC   1 ERROR = -0.49792     OLD X =   277.81     NEW X =   132.53    
+
+  LOOP $OLVER01 ITER    2:   1 VARS NOT CONVERGED, MAX ERR/TOL     -4979.2        TIME =      0.02
+
+      UOS BLOCK B16      MODEL: PUMP                                              TIME =      0.02
+      VOL-FLOW   =   2.402     , DELTA P    =   0.000     , PUMP EFF   =  0.8500    
+      FLUID PWR  =   0.000     , BRAKE PWR  =   0.000     , ELEC PWR   =   0.000    
+
+      UOS BLOCK B15      MODEL: SEP                                               TIME =      0.02
+      ---FLASH FEED STREAM TO CALCULATE TEMPERATURE:
+      KODE = 1  NTRIAL =   4  T = 300.1551  P =  100000.      V = 2.595719E-03  Q =  0.00000    
+
+  *   WARNING WHILE EXECUTING UNIT OPERATIONS BLOCK: "B15" (MODEL: "SEP")       
+                                                               (XFLASH.11)      
+      FLASH RESULTS ARE WITHIN TOLERANCE, BUT MAY BE UNSATISFACTORY BECAUSE     
+      EXTRAPOLATED EOS VAPOR VOLUME ROOT WAS USED FOR PROPERTY CALCULATIONS     
+      (T= 300.1551 K, P= 1.0000D+05 Pa).                                        
+      ---FLASH OUTLET STREAM H2O2    :
+      KODE = 2  NTRIAL =   2  T = 300.1551  P =  100000.      V = 1.013384E-06  Q =  0.00000    
+      ---FLASH OUTLET STREAM S22     :
+      KODE = 2  NTRIAL =   1  T = 300.1551  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.02
+      ITER   3 For Specs:        DS-1
+      ---FLASH STREAM WATER   :
+      KODE = 2  NTRIAL =   1  T = 298.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+      SPEC   1 ERROR = -0.49566     OLD X =   132.53     NEW X =  0.57820    
+
+  LOOP $OLVER01 ITER    3:   1 VARS NOT CONVERGED, MAX ERR/TOL     -4956.6        TIME =      0.02
+
+      UOS BLOCK B16      MODEL: PUMP                                              TIME =      0.02
+      VOL-FLOW   =  0.1048E-01 , DELTA P    =   0.000     , PUMP EFF   =  0.8500    
+      FLUID PWR  =   0.000     , BRAKE PWR  =   0.000     , ELEC PWR   =   0.000    
+
+      UOS BLOCK B15      MODEL: SEP                                               TIME =      0.02
+      ---FLASH FEED STREAM TO CALCULATE TEMPERATURE:
+      KODE = 1  NTRIAL =   5  T = 364.3327  P =  100000.      V = 0.463465      Q =  0.00000    
+      ---FLASH OUTLET STREAM H2O2    :
+      KODE = 2  NTRIAL =   3  T = 364.3327  P =  100000.      V = 3.297248E-04  Q =  0.00000    
+      ---FLASH OUTLET STREAM S22     :
+      KODE = 2  NTRIAL =   1  T = 364.3327  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      CONVERGENCE BLOCK $OLVER01  METHOD: SECANT                                  TIME =      0.02
+      ITER   4 For Specs:        DS-1
+      ---FLASH STREAM WATER   :
+      KODE = 2  NTRIAL =   1  T = 298.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+      SPEC   1 ERROR =  0.39968E-14                          X =  0.57820    
+
+  LOOP $OLVER01 ITER    4:     *** CONVERGED *** , MAX ERR/TOL     0.39968E-10    TIME =      0.02
+
+      UOS BLOCK B17      MODEL: FLASH2                                            TIME =      0.02
+      KODE = 2  NTRIAL =   2  T = 343.1500  P =  100000.      V = 2.138410E-04  Q =-1.613382E+06
+
+      UOS BLOCK B18      MODEL: HEATER                                            TIME =      0.02
+      KODE = 2  NTRIAL =   2  T = 298.1500  P =  100000.      V = 2.947292E-07  Q =-3.390795E+06
+
+      UOS BLOCK B19      MODEL: HEATER                                            TIME =      0.02
+      KODE = 2  NTRIAL =   2  T = 298.1500  P =  100000.      V = 0.824794      Q = -1794.79    
+
+      UOS BLOCK B20      MODEL: FSPLIT                                            TIME =      0.02
+      SPLIT FRACTIONS:  0.99960D+00    0.40000D-03
+
+      GENERATING RESULTS FOR UOS BLOCK B2       MODEL: PUMP                       TIME =      0.02
+      KODE = 5  NTRIAL =   7  T = 298.1500  P = 1.070970E-04  V =  0.00000      Q = -7559.37    
+      VOL-FLOW   =  0.5153E-01 , DELTA P    =  0.1000E+06 , PUMP EFF   =  0.8500    
+      FLUID PWR  =   5153.     , BRAKE PWR  =   6063.     , ELEC PWR   =   6063.    
+      NPSH AVAIL =   64.10    
+
+      GENERATING RESULTS FOR UOS BLOCK B5       MODEL: HEATER                     TIME =      0.02
+
+      GENERATING RESULTS FOR UOS BLOCK B8       MODEL: HEATER                     TIME =      0.02
+
+      GENERATING RESULTS FOR UOS BLOCK B9       MODEL: HEATER                     TIME =      0.02
+
+      GENERATING RESULTS FOR UOS BLOCK B14      MODEL: PUMP                       TIME =      0.02
+      KODE = 5  NTRIAL =   3  T = 309.1500  P =  200000.      V =  0.00000      Q = 9.424614E-03
+      VOL-FLOW   =  0.5818E-01 , DELTA P    =  0.8000E+06 , PUMP EFF   =  0.8500    
+      FLUID PWR  =  0.4655E+05 , BRAKE PWR  =  0.5476E+05 , ELEC PWR   =  0.5476E+05
+      NPSH AVAIL =   0.000    
+
+      GENERATING RESULTS FOR UOS BLOCK B16      MODEL: PUMP                       TIME =      0.02
+      KODE = 5  NTRIAL =   3  T = 298.1500  P =  2590.29      V =  0.00000      Q = -960.596    
+      VOL-FLOW   =  0.1048E-01 , DELTA P    =   0.000     , PUMP EFF   =  0.8500    
+      FLUID PWR  =   0.000     , BRAKE PWR  =   0.000     , ELEC PWR   =   0.000    
+      NPSH AVAIL =   98.00    
+
+      GENERATING RESULTS FOR UOS BLOCK B18      MODEL: HEATER                     TIME =      0.02
+
+      GENERATING RESULTS FOR UOS BLOCK B19      MODEL: HEATER                     TIME =      0.02
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
