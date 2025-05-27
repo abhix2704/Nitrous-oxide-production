@@ -1,0 +1,24 @@
+
+ DESIGN-SPEC:  DS-2                      
+ ------------------
+
+   SAMPLED VARIABLES:
+     HYDROGEN : C16H14O2MOLEFLOW IN STREAM S19 SUBSTREAM MIXED  
+     OXYGEN   : OXYGE-01MOLEFLOW IN STREAM OXYGEN SUBSTREAM MIXED   
+
+   SPECIFICATION:
+     MAKE HYDROGEN-OXYGEN APPROACH 0.0   
+     WITHIN          0.00100000                               
+
+   MANIPULATED VARIABLES:
+     VARY     : OXYGE-01MOLEFLOW IN STREAM OXYGEN SUBSTREAM MIXED   
+     LOWER LIMIT =           1.00000                  KMOL/HR         
+     UPPER LIMIT =           0.100000+09              KMOL/HR         
+     FINAL VALUE =       1,102.47                     KMOL/HR         
+
+   VALUES OF ACCESSED FORTRAN VARIABLES:
+     VARIABLE      VALUE AT START      FINAL VALUE     UNITS
+                      OF LOOP                               
+     --------      --------------      -----------     -----
+     HYDROGEN        1102.47            1102.47        KMOL/HR         
+     OXYGEN          900.000            1102.47        KMOL/HR         

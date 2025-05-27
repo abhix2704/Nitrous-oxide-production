@@ -1,0 +1,8 @@
+ DSET DESIGN-SPEC DS-2 BLKSTAT @BLKSTAT (0 0)                                   
+ DSET DESIGN-SPEC DS-2 COMPSTAT @L_1 (0)                                        
+ IDSET ID_115 (NPOINT) (#3)                                                     
+ IDSET ID_116 (PROPERTIES) (257 *6 106 *2 107 *2 262 *6)                        
+ LSET L_63 ( %ID_116 & %ID_115)                                                 
+ DSET DESIGN-SPEC DS-2 DEFV_SUM @L_63 ("MANIPULATED" 9.00000000D+02             
+ 1.10246517D+03 "KMOL/HR" "HYDROGEN" 1.10246517D+03 1.10246517D+03 "KMOL/HR"    
+ "OXYGEN" 9.00000000D+02 1.10246517D+03 "KMOL/HR" )                             
